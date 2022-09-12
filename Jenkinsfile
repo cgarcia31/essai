@@ -40,7 +40,7 @@ pipeline {
            agent any
            steps {
               script {
-                sh 'curl -I http://${DOCKER_IP}:${PORT_EXPOSED} | grep -q "Hello world!"'
+                sh 'curl http://${DOCKER_IP}:${PORT_EXPOSED} | grep -q "Hello world!"'
               }
            }
       }
