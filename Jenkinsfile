@@ -13,8 +13,10 @@ pipeline {
              agent any
              steps {
                 script {
-		  echo "Build du container"
-                  sh 'docker build -t ${DOCKER_ID}/${IMAGE_NAME}:${IMAGE_TAG} .'
+                  sh '''
+		  	echo "Build du container"
+ 			docker build -t ${DOCKER_ID}/${IMAGE_NAME}:${IMAGE_TAG} .
+		     '''
                 }
              }
         }
@@ -22,10 +24,11 @@ pipeline {
             agent any
             steps {
                script {
-                 sh '
+                 sh '''
 		 	echo "Run du conteneur"
 			docker rm -f ${IMAGE_NAME}
-		 	docker run -d --name ${IMAGE_NAME} -p ${PORT_EXPOSED}:5000 -e PORT=5000 ${DOCKER_ID}/${IMAGE_NAME}:${IMAGE_TAG} '
+		 	docker run -d --name ${IMAGE_NAME} -p ${PORT_EXPOSED}:5000 -e PORT=5000 ${DOCKER_ID}/${IMAGE_NAME}:${IMAGE_TAG} 
+		   '''
                }
             }
        }
