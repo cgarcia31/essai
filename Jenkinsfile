@@ -6,6 +6,7 @@ pipeline {
        STAGING = "${ID_DOCKER}-staging"
        PRODUCTION = "${ID_DOCKER}-production"
        DOCKER_IP = "192.168.118.134"
+       
      }
 
      agent none
@@ -39,7 +40,7 @@ pipeline {
            agent any
            steps {
               script {
-                sh 'curl -I http://${DOCKER_IP}:${PORT_EXPOSED} | grep 200 && curl -I http://${DOCKER_IP}:${PORT_EXPOSED} | grep -q "Hello world!"'
+                sh 'curl -I http://${DOCKER_IP}:${PORT_EXPOSED} | grep -q "Hello world!"'
               }
            }
       }
@@ -64,8 +65,8 @@ pipeline {
           steps {
              script {
                sh '''
-			echo $DOCKERHUB_PASSWORD_PSW | docker login -u $ID_DOCKER --password-stdin
-			docker push ${ID_DOCKER}/$IMAGE_NAME:$IMAGE_TAG
+			          echo $DOCKERHUB_PASSWORD_PSW | docker login -u $ID_DOCKER --password-stdin
+			          docker push ${ID_DOCKER}/$IMAGE_NAME:$IMAGE_TAG
                '''
              }
           }
