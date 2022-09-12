@@ -7,6 +7,7 @@ pipeline {
        PRODUCTION = "${ID_DOCKER}-production"
        DOCKER_IP = "192.168.118.134"
      }
+
      agent none
      stages {
          stage('Build image') {
@@ -40,6 +41,7 @@ pipeline {
               }
            }
       }
+
       stage('Clean Container') {
           agent any
           steps {
@@ -65,16 +67,16 @@ pipeline {
                '''
              }
           }
-      }    
+      }
      
      stage('Push image in staging and deploy it') {
        when {
-              expression { GIT_BRANCH == 'origin/main' }
+              expression { GIT_BRANCH == 'origin/master' }
             }
       agent any
       environment {
           HEROKU_API_KEY = credentials('e445150d-679e-4af2-a11c-40e141cc60b9')
-      }  
+      }
       steps {
           script {
             sh '''
