@@ -79,7 +79,7 @@ pipeline {
       agent any
       environment{
         tempo=credentials("${HEROKU_API_CREDID}")
-        HEROKU_API_KEY=${tempo_PSW}
+        HEROKU_API_KEY="${tempo_PSW}"
       }
       steps {
           script {
@@ -100,7 +100,7 @@ pipeline {
       agent any
       environment{
         tempo=credentials("${HEROKU_API_CREDID}")
-        HEROKU_API_KEY=${tempo_PSW}
+        HEROKU_API_KEY="${tempo_PSW}"
       }
       steps {
           script {
