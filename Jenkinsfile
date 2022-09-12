@@ -15,9 +15,9 @@ pipeline {
              steps {
                 script {
                   sh '''
-		  	echo "Build du container"
- 			docker build -t ${DOCKER_ID}/${IMAGE_NAME}:${IMAGE_TAG} .
-		     '''
+		  	                echo "Build du container"
+ 			                  docker build -t ${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG} .
+		              '''
                 }
              }
         }
@@ -29,7 +29,7 @@ pipeline {
                  sh '''
 		 	              echo "Run du conteneur"
 			              docker rm -f ${IMAGE_NAME}
-		 	              docker run -d --name ${IMAGE_NAME} -p ${PORT_EXPOSED}:5000 -e PORT=5000 ${DOCKER_ID}/${IMAGE_NAME}:${IMAGE_TAG} 
+		 	              docker run -d --name ${IMAGE_NAME} -p ${PORT_EXPOSED}:5000 -e PORT=5000 ${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG} 
 		              '''
                }
             }
