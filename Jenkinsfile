@@ -5,8 +5,6 @@ pipeline {
        IMAGE_TAG = "latest"
        STAGING = "${ID_DOCKER}-staging"
        PRODUCTION = "${ID_DOCKER}-production"
-       DOCKER_IP = "192.168.118.134"
-       
      }
 
      agent none
